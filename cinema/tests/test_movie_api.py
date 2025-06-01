@@ -188,6 +188,9 @@ class MovieImageUploadTests(TestCase):
         self.genre = sample_genre()
         self.actor = sample_actor()
         self.movie_session = sample_movie_session(movie=self.movie)
+        res = self.client.get(MOVIE_SESSION_URL)
+
+        self.assertIn("movie_image", res.data[0].keys())
 
     def tearDown(self):
         self.movie.image.delete()
